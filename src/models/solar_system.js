@@ -8,16 +8,13 @@ SolarSystem.prototype.bindEvents = function () {
     PubSub.publish('SolarSystem:all-planets-ready', this.planets);
     PubSub.subscribe('PlanetsMenu:select-planet', (event) => {
       const selectedPlanetName = event.detail
-      console.log('selected planet:', selectedPlanetName);
       this.publishPlanetDetails(selectedPlanetName);
     });
 };
 
-SolarSystem.prototype.publishPlanetDetails = function (planetName) {
-  const selectedPlanetInfo = this.planets.forEach((planet) => {
-      if (planet.name === planetName) {
-       return planet
-      }
+SolarSystem.prototype.publishPlanetDetails = function (selectedPlanetName) {
+  const selectedPlanetInfo = this.planets.find((currentPlanet) => {
+    return currentPlanet.name === selectedPlanetName;
   });
   PubSub.publish('Planets:selected-planet-ready', selectedPlanetInfo);
 };

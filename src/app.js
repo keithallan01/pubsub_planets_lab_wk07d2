@@ -11,10 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const planetsDetailsElement = document.querySelector('section.planet-details');
   const planetsDetailsDisplay = new PlanetDetailsView(planetsDetailsElement);
-  planetsDetailsDisplay.bindEvents(); 
-
-
-
+  planetsDetailsDisplay.bindEvents();
 
   const planetsDataModel = new SolarSystem(planetsData);
   console.log(planetsDataModel.planets);
