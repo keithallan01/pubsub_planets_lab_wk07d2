@@ -5,7 +5,7 @@ const SolarSystem = function(planets) {
 };
 
 SolarSystem.prototype.bindEvents = function () {
-  PubSub.publish('SolarSystem:all-planets-ready', this.planets);
+    PubSub.publish('SolarSystem:all-planets-ready', this.planets);
   // PubSub.subscribe('PlanetsMenu:planet-selected', (event) => {
   //   const selectedPlanetIndex = event.detail;
   //   console.log(this.planets.selectedPlanetIndex)
