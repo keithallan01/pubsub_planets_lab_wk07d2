@@ -12,12 +12,9 @@ PlanetsMenu.prototype.bindEvents = function () {
   });
 
     this.element.addEventListener('click', (event) => {
-
       const selectedPlanetName = event.target.id;
-      console.log(selectedPlanetName)
-      console.log('great success!')
+      PubSub.publish('PlanetsMenu:select-planet', selectedPlanetName);
     });
-
 
 };
 

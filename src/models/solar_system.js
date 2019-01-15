@@ -6,10 +6,19 @@ const SolarSystem = function(planets) {
 
 SolarSystem.prototype.bindEvents = function () {
     PubSub.publish('SolarSystem:all-planets-ready', this.planets);
-  // PubSub.subscribe('PlanetsMenu:planet-selected', (event) => {
-  //   const selectedPlanetIndex = event.detail;
-  //   console.log(this.planets.selectedPlanetIndex)
-  // });
+    PubSub.subscribe('PlanetsMenu:select-planet', (event) => {
+      const selectedPlanetName = event.detail;
+      this.publishPlanetDetails(selectedPlanetName);
+    });
+};
+
+SolarSystem.prototype.publishPlanetDetails = function (planetName) {
+  const selectedPlanetInfo = this.planets.forEach((planet) => {
+      if (planet.name === planetName) {
+       return planet
+      }
+  });
+  PubSub.publish('Planets:selected-planet-ready', selectedPlanetInfo);
 };
 
 module.exports = SolarSystem;
